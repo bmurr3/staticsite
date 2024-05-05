@@ -2,12 +2,20 @@ from typing import Self
 
 
 class TextNode:
-    def __init__(self, text: str, text_type: str, url: str = None):
+    def __init__(
+        self,
+        text: str,
+        text_type: str,
+        url: str = None
+    ):
         self.text      = text
         self.text_type = text_type
         self.url       = url
 
-    def __eq__(self, to_compare: Self):
+    def __eq__(
+        self,
+        to_compare: Self
+    ):
         return (
             self.text == to_compare.text 
             and self.text_type == to_compare.text_type 

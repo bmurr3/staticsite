@@ -28,4 +28,4 @@ class HTMLNode:
         return properties
 
     def __repr__(self) -> str:
-        return f'HTMLNode({self.tag}, {self.value}, {len(self.children) if self.children is not None else None}, {self.props_to_html})'
+        return f'HTMLNode({self.tag}, {self.value}, {len(self.children) if self.children is not None else None}, {self.props_to_html()})'
