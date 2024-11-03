@@ -1,32 +1,33 @@
-from typing import Self
-
 from htmlnode import HTMLNode
 
 
 class LeafNode(HTMLNode):
     def __init__(
         self,
-        tag: str = None,
-        value: str = None,
-        props: dict[str, str] = None
-    ) -> Self:
+        tag: str | None,
+        value: str,
+        props: dict[str, str] | None = None
+    ) -> None:
+        if value is None:
+            raise ValueError("A value is required.")
+        
         super().__init__(
-            self=self,
             tag=tag,
             value=value,
             props=props
         )
-    
-    def to_html(self) -> str:
-        html = '' if self.value is None else self.value
 
+    def to_html(self) -> str:
         if self.tag is None:
-            return html
-        
-        html = f'<{self.tag}{self.props_to_html()}/>' if html == '' \
-                else f'<{self.tag}{self.props_to_html()}>{html}</{self.tag}>'
-        
-        return html
-    
-    def __repr__(self) -> str:
-        return f'LeafNode({self.tag}, {self.value}, {self.props_to_html()})'
+            return self.value
+
+        props_as_html = self.props_to_html()
+
+        open_tag = (
+            f'<{self.tag} {props_as_html}>'
+            if props_as_html != ''
+            else f'<{self.tag}>'
+        )
+        close_tag = f'</{self.tag}>'
+
+        return f'{open_tag}{self.value}{close_tag}'
