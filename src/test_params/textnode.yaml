@@ -1,0 +1,26 @@
+test_eq:
+- text: 'This is a text node'
+  text_type: 'BOLD'
+  url: null
+- text: 'This is a text node'
+  text_type: 'BOLD'
+  url: null
+test_eq_with_url:
+- text: 'This is a text node'
+  text_type: 'BOLD'
+  url: 'localhost:8888'
+- text: 'This is a text node'
+  text_type: 'BOLD'
+  url: 'localhost:8888'
+test_not_eq_text:
+  text:
+    - 'Text A'
+    - 'Text B'
+  text_type: 'NORMAL'
+  url: null
+test_not_eq_type:
+  text: 'Test text'
+  text_type: 
+   - 'NORMAL'
+   - 'LINK'
+  url: null

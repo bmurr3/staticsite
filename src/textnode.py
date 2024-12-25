@@ -23,8 +23,8 @@ class TextNode():
 
     def __eq__(self, value: "TextNode") -> bool:
         return (
-            self.text == value.text,
-            self.text_type == value.text_type,
+            self.text == value.text and
+            self.text_type == value.text_type and
             self.url == value.url
         )
     
