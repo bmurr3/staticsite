@@ -1,0 +1,12 @@
+test_props_to_html_no_props:
+  props: null
+  expected_result: ''
+test_props_to_html_one_prop:
+  props:
+    href: 'https://localhost:8888'
+  expected_result: ' href="https://localhost:8888"'
+test_props_to_html_two_props:
+  props:
+    href: 'https://localhost:8888'
+    target: '_blank'
+  expected_result: ' href="https://localhost:8888" target="_blank"'
