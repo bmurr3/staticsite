@@ -1,3 +1,4 @@
+import splitter
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 from leafnode import LeafNode
@@ -45,11 +46,24 @@ def text_node_to_html_node(text_node: TextNode) -> HTMLNode:
     raise ValueError(f'Unknown Text Type: {text_node.text_type}')
 
 
+def text_to_textnodes(text: str) -> list[TextNode]:
+    nodes =[TextNode(
+        text,
+        TextType.NORMAL
+    )]
+
+    nodes = splitter.split_nodes_delimiter(nodes, TextType.CODE)
+    nodes = splitter.split_nodes_delimiter(nodes, TextType.BOLD)
+    nodes = splitter.split_nodes_delimiter(nodes, TextType.ITALIC)
+    nodes = splitter.split_nodes_images(nodes)
+    nodes = splitter.split_nodes_links(nodes)
+
+    return nodes
+
+
 def main() -> None:
-    print(text_node_to_html_node(TextNode(
-        'Test Node',
-        TextType.BOLD
-    )))
+    text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
+    print(text_to_textnodes(text))
 
 
 if __name__ == '__main__':
